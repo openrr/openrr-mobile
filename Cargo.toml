@@ -1,0 +1,50 @@
+[package]
+name = "openrr-mobile"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+ros = ["arci-ros"]
+ros2 = ["arci-ros2"]
+
+[dependencies]
+arci = { git = "https://github.com/openrr/openrr" }
+arci-gamepad-gilrs = { git = "https://github.com/openrr/openrr" }
+arci-ros = { git = "https://github.com/openrr/openrr", optional = true }
+arci-ros2 = { git = "https://github.com/openrr/openrr", optional = true, features = ["ros2"]}
+arci-speak-cmd = { git = "https://github.com/openrr/openrr" }
+arci-urdf-viz = { git = "https://github.com/openrr/openrr" }
+openrr-client = { git = "https://github.com/openrr/openrr", default-features = false }
+openrr-teleop = { git = "https://github.com/openrr/openrr" }
+rand = "0.8.5"
+tokio = { version = "1.22", features = ["full"] }
+
+[[bin]]
+name = "ros_teleop"
+path = "src/bin/ros_teleoperation.rs"
+
+[[bin]]
+name = "ros_auto"
+path = "src/bin/ros_automation.rs"
+
+[[bin]]
+name = "ros2_auto"
+path = "src/bin/ros2_automation.rs"
+
+[[bin]]
+name = "uviz_teleop"
+path = "src/bin/urdf_viz_teleoperation.rs"
+
+[[bin]]
+name = "uviz_auto"
+path = "src/bin/urdf_viz_automation.rs"
+
+[[bin]]
+name = "teleop"
+path = "src/bin/teleoperation.rs"
+
+[[bin]]
+name = "auto"
+path = "src/bin/automation.rs"
