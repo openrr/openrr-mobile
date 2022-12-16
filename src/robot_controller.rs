@@ -17,21 +17,13 @@ impl<M> RobotController<M>
 where
     M: MoveBase + 'static,
 {
-    pub fn new(move_base: M) -> Self {
+    pub fn new(move_base: M, min: BaseVelocity, max: BaseVelocity) -> Self {
         Self {
             move_base,
             velocity: BaseVelocity::new(0f64, 0f64, 0f64),
             // TODO: Read from toml file
-            min_velocity: BaseVelocity {
-                x: -1f64,
-                y: -1f64,
-                theta: -1f64,
-            },
-            max_velocity: BaseVelocity {
-                x: 1f64,
-                y: 1f64,
-                theta: 1f64,
-            },
+            min_velocity: min,
+            max_velocity: max,
 
             state: State::ChangingDirection,
         }

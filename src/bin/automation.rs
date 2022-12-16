@@ -1,3 +1,4 @@
+use arci::BaseVelocity;
 use openrr_mobile::robot_controller::RobotController;
 
 fn main() {
@@ -28,7 +29,10 @@ fn main() {
         move_base_client.run_send_velocity_thread();
     }
 
-    let mut robot_controller = RobotController::new(move_base_client);
+    let min = BaseVelocity::new(-1f64, -1f64, -1f64);
+    let max = BaseVelocity::new(1f64, 1f64, 1f64);
+
+    let mut robot_controller = RobotController::new(move_base_client, min, max);
 
     loop {
         robot_controller.random_walk();
